@@ -1,29 +1,25 @@
-This Document describes various objects created for the projects there relationship and contribution of each team member towards the project.
+### This Document describes various objects created for the projects there relationship and contribution of each team member towards the project.
 
  
-Object: Sequences
+# Object: Sequences
 
    Use:  Sequences are used to implement unique ID for each entity. 
 With the use of Sequences there is no need for the user to enter the unique ID the sequences will automatically create a unique ID thus avoiding the Unique Key violation constraint. 
-            
-            Ex:
-             create sequence emp increment by 1 start with 1020 nocache nocycle; 
-             create sequence prod increment by 1 start with 1020 nocache nocycle;
-             create sequence cus increment by 1 start with 1020 nocache nocycle;
- create sequence pur increment by 1 start with 1020 nocache nocycle; 
-             create sequence supp increment by 1 start with 1020 nocache nocycle;
 
-          
+```sql
+create sequence emp increment by 1 start with 1020 nocache nocycle; 
+create sequence prod increment by 1 start with 1020 nocache nocycle;
+create sequence cus increment by 1 start with 1020 nocache nocycle;
+create sequence pur increment by 1 start with 1020 nocache nocycle; 
+create sequence supp increment by 1 start with 1020 nocache nocycle;```         
  
   
-
-   Object: Package & Procedures 
+# Object: Package & Procedures 
 
 1)	To display all tuples in the tables. The procedures are used to display all tuple in the table. In the front end we have used these procedure to display all tuples  from different tables by clicking on generate reports.
            
-             Ex:
-            
- create or replace package show_details as
+```sql          
+create or replace package show_details as
 procedure show_employees();
 procedure show_products();
 procedure show_product_discount();
@@ -218,14 +214,13 @@ procedure show_logs(ref out ref_cursor);
 end;
 /
 show errors
-
+```
 
 
 2)	Procedures to generate monthly sales Reports. Based on the Information provided in terms of Product ID, procedure will generate sales report. In front end we have use
 these procedure to generate sales report based on Product Id which provide product name, month, total quantity sold each month, total dollar amount sold each month, average sale price for each month.  
 
-Ex:
-
+```sql
 create or replace package sales_report as
 type ref_cursor is ref cursor;
 procedure report_monthly_sale(pr_id in products2.pid%type,ref out ref_cursor);
@@ -269,15 +264,14 @@ end;/*end of procedure*/
 end;/*end of package body*/
 /
 show errors
-
+```
 
 
 3)	Procedure is implemented to make entry in the tables (Employee and Purchase). Procedure is implemented in such a way that it automatically generate unique ID for corresponding tables (which is implemented using sequences). Also based on basic information provided procedure will calculate total price of the sale. Additionally along with each entry in employee table corresponding entry will be made in login table with default user name as employee ID and Initial password as name (Which can be changed through front end by selecting change password option). For error handling procedure will check compliance with pid, cid, Quantity in hand and QOH_Threshold, If any of the constraint is violated  appropriate message will be displayed to the user.
 
-
-Ex:
-              create or replace package add_tuple as
-procedure add_employee(ename in employees2.ename%type,city in             employees2.city%type,telephone# in employees2.telephone#%type,position in employees2.position%type);
+```sql
+create or replace package add_tuple as
+procedure add_employee(ename in employees2.ename%type,city in employees2.city%type,telephone# in employees2.telephone#%type,position in employees2.position%type);
 procedure add_purchase(eid in purchases2.eid%type,pid in purchases2.pid%type,cid in purchases2.cid%type,qty in purchases2.qty%type);
 end;
 /
@@ -314,33 +308,14 @@ end;
 end; /*end of package*/
 /
 show errors
-
+```
  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-Object: Trigger
+# Object: Trigger
 
 1)	A trigger is made to make entry in the log table automatically  as an when an entry is made in the purchase table and also when a discount category is updated in products table with who (User Name of Database), what (Changes made), When (time) attribute.
-Ex:
+
+```sql
 /* Trigger to add tuple in log table when purchases is made*/
 set serveroutput on
 create or replace trigger in_pur
@@ -361,10 +336,11 @@ begin/*Begin of Trigger*/
 insert into logs values(user,sysdate,'The discount Category of Product' || :old.pid || 'is changed from' || :old.disc_category || 'to' || :new.disc_category);
 end;/*end of Trigger*/
 /
+```
 
 2)	Trigger to check if  quantity to be purchased  from purchase table is equal to or smaller than the quantity on hand in products table. Or else an error will be shown Insufficient quantity in stock and purchase will be aborted.
 
-Ex:
+```sql
 /*Trigger to check if qoh is less than purchase qty*/
 create or replace trigger insufficient_quantity
 before insert or update on purchases2
@@ -384,10 +360,11 @@ raise_application_error(-20001,'Insufficient quantity in stock');
 end;/*end of trigger*/
 /
 show errors
+```
 
 3)	Trigger to check if qoh is less then qoh_threshold after adding an tuple in to the purchase table i.e after a tuple is added in purchase table the qoh column in products table should be modified accordingly. If the purchase causes the qoh of the product to be below qoh_threshold  appropriate  message will be displayed.
 
-Ex:
+```sql
  /* Trigger to modify qoh in product table when tuple is added in purchases table*/
 set serveroutput on
 create or replace trigger prod_qoh_on_order
@@ -405,10 +382,11 @@ begin/*Begin of trigger*/
 end;/*end of trigger*/
 /
 show error
+```
 
 4)	 Trigger to increase visit made of the customer if purchase by a customer is made on two different date.
 
-Ex:
+```sql
 /* Trigger to increase visit made of customer when purchase is made*/
 set serveroutput on
 create or replace trigger visitincrease
@@ -436,10 +414,10 @@ end if;
 end if;
 end;/*end of Cursor*/
 end;/*end of Trigger*/
-/ show errors
- 
+/ show errors```
 
-Relationship between triggers and Procedure:
+
+> Relationship between triggers and Procedure:
 
 Once the purchases is made using procedure the trigger will automatically  get fired  on the purchase table and add tuple in log table also it will reduce qoh on product table with qty from purchase table and also it will give appropriate message if qoh is < than  qoh_threshold in product table. Also the trigger will cause visit made of the customer to increase by one if customer has purchases on two different date . Trigger will also cause the purchases to be aborted if qty in purchases table is > than qoh in product table.
 Thus if trigger is defined for particular table then it will automatically get activated when the appropriate event occurs. Thus if procedure is used for particular table either for insertion, deletion or update and if trigger is defined for that particular table then with the execution of procedure trigger will automatically get fired if when appropriate event occur. 
