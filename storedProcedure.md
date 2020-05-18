@@ -3,7 +3,7 @@
  
 # Object: Sequences
 
-   Use:  Sequences are used to implement unique ID for each entity. 
+Use:  Sequences are used to implement unique ID for each entity. 
 With the use of Sequences there is no need for the user to enter the unique ID the sequences will automatically create a unique ID thus avoiding the Unique Key violation constraint. 
 
 ```sql
@@ -16,7 +16,7 @@ create sequence supp increment by 1 start with 1020 nocache nocycle;```
   
 # Object: Package & Procedures 
 
-1)	To display all tuples in the tables. The procedures are used to display all tuple in the table. In the front end we have used these procedure to display all tuples  from different tables by clicking on generate reports.
+To display all tuples in the tables. The procedures are used to display all tuple in the table. In the front end we have used these procedure to display all tuples  from different tables by clicking on generate reports.
            
 ```sql          
 create or replace package show_details as
