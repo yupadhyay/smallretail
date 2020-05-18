@@ -11,9 +11,9 @@ create sequence emp increment by 1 start with 1020 nocache nocycle;
 create sequence prod increment by 1 start with 1020 nocache nocycle;
 create sequence cus increment by 1 start with 1020 nocache nocycle;
 create sequence pur increment by 1 start with 1020 nocache nocycle; 
-create sequence supp increment by 1 start with 1020 nocache nocycle;```         
- 
-  
+create sequence supp increment by 1 start with 1020 nocache nocycle;
+```
+
 # Object: Package & Procedures 
 
 To display all tuples in the tables. The procedures are used to display all tuple in the table. In the front end we have used these procedure to display all tuples  from different tables by clicking on generate reports.
@@ -414,7 +414,8 @@ end if;
 end if;
 end;/*end of Cursor*/
 end;/*end of Trigger*/
-/ show errors```
+/ show errors
+```
 
 
 > Relationship between triggers and Procedure:
