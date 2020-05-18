@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+<script type="text/javascript">
+<script language="javascript">
+function break(){
+window.close();
+}
+</script>
+<style type="text/css">
+ul.makeMenu, ul.makeMenu ul {
+  width: 120px;                 /* sets the size of the menu blocks */
+  border: 1px solid #000;      /* puts a black border around the menu blocks */
+  background-color: #ffa;      /* makes the menu blocks mint green - a bg-color MUST be included for IE to work properly! */
+  padding-left: 0px;           /* stops the usual indent from ul */
+  cursor: default;             /* gives an arrow cursor */
+  margin-left: 0px;            /* Opera 7 final's margin and margin-box model cause problems */
+}
+ul.makeMenu li {
+  list-style-type: none;       /* removes the bullet points */
+  margin: 0px;                 /* Opera 7 puts large spacings between li elements */
+  position: relative;          /* makes the menu blocks be positioned relative to their parent menu item
+                                  the lack of offset makes these appear normal, but it will make a difference
+                                  to the absolutely positioned child blocks */
+  color: "black";                 /* sets the default font colour to white */
+}
+ul.makeMenu li > ul {          /* using the > selector prevents many lesser browsers (and IE - see below) hiding child ULs */
+  display: none;               /* hides child menu blocks - one of the most important declarations */
+  position: absolute;          /* make child blocks hover without leaving space for them */
+  top: 2px;                    /* position slightly lower than the parent menu item */
+  left: 120px;                  /* this must not be more than the width of the parent block, or the mouse will
+                                  have to move off the element to move between blocks, and the menu will close */
+}
+ul.makeMenu li:hover, ul.makeMenu li.CSStoHighlight {
+  background-color: #ffa;      /* gives the active menu items a yellow background */
+  color: #000;                 /* makes the active menu item text black */ 
+}
+ul.makeMenu ul.CSStoShow {     /* must not be combined with the next rule or IE gets confused */
+  display: block;              /* specially to go with the className changes in the behaviour file */
+}
+ul.makeMenu li:hover > ul {    /* one of the most important declarations - the browser must detect hovering over arbitrary elements
+                                  the > targets only the child ul, not any child uls of that child ul */
+  display: block;              /* makes the child block visible - one of the most important declarations */
+}
+/* and some link styles */
+ul.makeMenu li a { color: "black"; display: block; width: 100%; text-decoration: underline; }
+ul.makeMenu li a:hover, ul.makeMenu li a.CSStoHighLink { color: #000; }
+ul.makeMenu li:hover > a { color: #000; } /* supports links in branch headings - should not be display: block; */
+</style>
+
+
+
+<attach event="onmouseover" handler="rollOver" />
+<attach event="onmouseout" handler="rollOff" />
+
+</head>
+<body bgcolor=#99CCFF>
+<br>
+<br>
+<br>
+<table >
+
+<tr>
+<td align="center" valign="middle">
+<ul class="makeMenu">
+  <li>&gt; Add
+    <ul>
+      <li><a href="NewEmployee.html" target="frame4">New Employee</a></li>
+      <li><a href="Customer.html" target="frame4">New Customer</a></li>
+      <li><a href="Product.jsp" target="frame4">New Products</a></li>
+      <li><a href="Supplier.html" target="frame4">New Supplier</a></li>
+    </ul>
+  </li>
+
+</td><td valign="top"><br></td><td valign="top"><br></td>
+
+</tr>
+<tr>
+<td align="center" valign="middle">
+<ul class="makeMenu">
+  <li>&gt; Search Utility
+    <ul>
+      <li><a href="SearchEmployee.html" target="frame4">Search Employee</a></li>
+      <li><a href="SearchProduct.jsp" target="frame4">Search Product</a></li>
+      <li><a href="SearchCustomer.jsp" target="frame4">Search Customer</a></li>
+      <li><a href="SearchSupplier.jsp" target="frame4">Search Supplier</a></li>
+    </ul>
+  </li>
+
+</td><td valign="top"><br></td><td valign="top"><br></td>
+
+</tr>
+<tr>
+<td align="center" valign="middle">
+<ul class="makeMenu">
+  <li>&gt; Report
+    <ul>
+      <li><a href="EmployeeReport.jsp" target="frame4">Employee Report</a></li>
+      <li><a href="ProductReport.jsp" target="frame4">Product Report</a></li>
+      <li><a href="CustomerReport.jsp" target="frame4">Customer Report</a></li>
+      <li><a href="PurchaseReport.jsp" target="frame4">Purchase Report</a></li>
+      <li><a href="SupplierReport.jsp" target="frame4">Supplier Report</a></li>
+      <li><a href="LogReport.jsp" target="frame4">Log Report</a></li>
+      <li><a href="DiscountReport.jsp" target="frame4">Discount Report</a></li>      
+      <li><a href="SalesReport.jsp" target="frame4">Sales Report</a></li>
+    </ul>
+  </li>
+
+</td><td valign="top"><br></td><td valign="top"><br></td>
+
+
+
+</tr>
+<tr>
+<td align="center" valign="middle">
+<ul class="makeMenu">
+  <li>&gt; Edit
+    <ul>
+      <li><a href="EditProduct.jsp" target="frame4">Product</a></li>
+      <li><a href="EditProfile.jsp" target="frame4">Personal Detail</a></li>
+      <li><a href="ChangePassword.html" target="frame4">Change Password</a></li>
+     </ul>
+  </li>
+
+</td><td valign="top"><br></td><td valign="top"><br></td>
+
+</tr>
+<tr>
+<td align="center">
+<a href="login.html" onclick="break()" target="login.html" >Logout</a>
+</td>
+</tr>
+<tr align="center">
+<td>
+<a href="Manager.jsp" target="frame4">Home</a>
+</td>
+</tr>
+
+</table>
+</body>
+
+</html>
+
+
+
+
+

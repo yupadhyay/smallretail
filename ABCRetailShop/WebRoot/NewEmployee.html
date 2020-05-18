@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<script language="javascript">
+function abc()
+{
+if(customer.ename.value=='')
+{
+alert('Employee Name cannot be empty');
+return;
+}
+  
+  
+else
+{
+	//login.action="adf.asp"
+	customer.submit();		
+}
+
+}
+</script> 
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Retail Business Store</title>
+
+
+</head>
+
+<body background=untitled.bmp>
+<form name=customer method="post" action="NewEmployee.jsp">
+<p><br></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp; </p>
+<font  size=6 face="Arial"><marquee direction=right  ><b>Retail Business Management System</b></marquee> </font>
+
+
+<p>&nbsp;&nbsp; </p>
+<table align="center">
+
+<tr>
+<td width="200">
+<p align="center"><font face="Arial" size="4" color="red"><i><b>Enter Name:
+</b></i></font>
+</td>
+<td height="32" >
+<p align="justify">
+<input type =text name=ename>
+<img height="9" src="dot.gif" width="9"></td>
+</tr>
+<tr>
+<td width =200>
+<p align="center"><font face="Arial" size="4" color="red"><i><b>&nbsp;&nbsp;&nbsp; Enter City: 
+</b></i></font>
+</td>
+<td height="32" >
+<p align="justify">
+<input type =text name=city> </td>
+</tr> 
+<tr>
+<td width =200>
+<p align="center"><font face="Arial" size="4" color="red"><i><b>&nbsp;&nbsp;&nbsp; Enter Telephone: 
+</b></i></font>
+</td>
+<td height="32" >
+<p align="justify">
+<input type =text name=telephone> </td>
+</tr> 
+
+<tr>
+<td width =200>
+<p align="center"><font face="Arial" size="4" color="red"><i><b>&nbsp;&nbsp;&nbsp; Enter Position: 
+</b></i></font>
+</td>
+<td height="32" >
+<p align="justify">
+<select name=position>
+<option  value="Manager">Manager</option> 
+<option value="Clerk">Clerk</option>
+
+</select> </td>
+</tr> 
+<tr>
+<td><input type=button name=txt5 value="Create Employee" onclick="abc()"></td>
+<td><input type=reset name=cancel value="Reset"></td>
+</table>
+</form>
+</body>
+</html>
+
